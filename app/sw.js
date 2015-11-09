@@ -2,8 +2,8 @@
 var CACHE_NAME = 'hc::v1';
 var urlsToCache = [
 	'.',
-	'styles/',
-	'scripts/'
+	'styles/styles.css',
+	'scripts/app.js'
 ];
 
 // Set the callback for the install step
