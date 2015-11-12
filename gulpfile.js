@@ -11,7 +11,7 @@ gulp.task('clean', function () {
 
 // copies images to dist
 gulp.task('images', ['clean'], function () {
-	gulp.src('.app/img/**/*')
+	gulp.src('./app/img/**/*')
 		.pipe(gulp.dest('dist/img'));
 });
 
@@ -22,5 +22,10 @@ gulp.task('html', ['clean'], function () {
 		.pipe(gulp.dest('dist'));
 });
 
+gulp.task('copy-files', ['clean'], function () {
+	gulp.src(['./app/sw.js', './app/manifest.json', './app/favicon.ico', './app/browserconfig.xml'])
+		.pipe(gulp.dest('dist'));
+});
+
 // default task that runs al of the above
-gulp.task('default', ['clean', 'images', 'html']);
+gulp.task('default', ['clean', 'copy-files', 'images', 'html']);
