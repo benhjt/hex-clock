@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,15 +24,77 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-TileImage" content="img/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
-</head>
 
-<body>
+    <style>
+      /* reset */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html, body {
+        height: 100%;
+      }
+
+      .container {
+        left: 50%;
+        margin: auto;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+           -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+             -o-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+      }
+
+      #hex-time {
+        color: white;
+        display: block;
+        font-family: 'Lato', Helvetiva, Arial, sans-serif;
+        font-size: 4.5em;
+        font-weight: 100;
+        min-width: 200px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
     <div class="container">
-        <p id="hex-time"></p>
+      <p id="hex-time"></p>
     </div>
-    <script type="text/javascript" src="scripts/app.js" async></script>
-</body>
 
+    <script type="text/javascript">
+      function displayTime() {
+        'use strict';
+
+        var d = new Date();
+        var h = d.getHours();
+        var m = d.getMinutes();
+        var s = d.getSeconds();
+
+        if (h <= 9) {h = '0' + h};
+        if (m <= 9) {m = '0' + h};
+        if (s <= 9) {s = '0' + h};
+
+        var colorString = "#" + h + m + s;
+
+        document.body.style.background = colorString;
+        document.querySelector("#hex-time").innerHTML = colorString;
+        setTimeout(displayTime, 1000);
+      }
+
+      displayTime();
+
+      if ('serviceWorker' in navigator) {
+    		navigator.serviceWorker.register('sw.js').then(function (registration) {
+    			// Registration was successful
+    			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    		}).catch(function (err) {
+    			// registration failed :(
+    			console.log('ServiceWorker registration failed: ', err);
+    		});
+    	}
+    </script>
+  </body>
 </html>

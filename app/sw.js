@@ -1,9 +1,7 @@
 // The files we want to cache
-var CACHE_NAME = 'hc::v1';
+var CACHE_NAME = 'hc::v2';
 var urlsToCache = [
-	'.',
-	'styles/styles.css',
-	'scripts/app.js'
+	'/'
 ];
 
 // Set the callback for the install step
