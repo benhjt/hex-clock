@@ -2,39 +2,11 @@
 var gulp = require('gulp');
 
 // include plugins
-var clean = require('gulp-clean');
-var cssmin = require('gulp-cssmin');
+var del = require('del');
 var htmlminify = require('gulp-minify-html');
-var jshint = require('gulp-jshint');
-var uglify = require('gulp-uglify');
 
 gulp.task('clean', function () {
-	gulp.src('dist', {
-			read: false
-		})
-		.pipe(clean());
-});
-
-// JSHint task
-gulp.task('jshint', ['clean'], function () {
-	gulp.src(['gulpfile.js', './app/**/*.js'])
-		.pipe(jshint())
-		.pipe(jshint.reporter('jshint-stylish'))
-		.pipe(jshint.reporter('fail'));
-});
-
-// minifies, obfuscates and concatenates our JS files
-gulp.task('scripts', ['clean'], function () {
-	gulp.src(['./app/**/*.js'])
-		.pipe(uglify())
-		.pipe(gulp.dest('dist'));
-});
-
-// minifies styles
-gulp.task('styles', ['clean'], function () {
-	gulp.src('./app/styles/**/*.css')
-		.pipe(cssmin())
-		.pipe(gulp.dest('dist/styles'));
+	del(['./dist']);
 });
 
 // copies images to dist
@@ -51,4 +23,4 @@ gulp.task('html', ['clean'], function () {
 });
 
 // default task that runs al of the above
-gulp.task('default', ['clean', 'jshint', 'scripts', 'styles', 'images', 'html']);
+gulp.task('default', ['clean', 'images', 'html']);
