@@ -1,12 +1,13 @@
 {
   "name": "hex-clock",
   "version": "0.1.0",
-  "description": "Hex clock 'ting'",
+  "description": "Hex clock",
   "author": "benhjt",
   "license": "MIT",
+  "scripts": {
+    "generate-sw": "sw-precache --config=sw-precache-config.js > app/service-worker.js"
+  },
   "devDependencies": {
-    "del": "^2.0.2",
-    "gulp": "^3.9.0",
-    "gulp-minify-html": "^1.0.4"
+    "sw-precache": "^5.2.0"
   }
 }
